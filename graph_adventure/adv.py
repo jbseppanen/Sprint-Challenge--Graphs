@@ -24,6 +24,15 @@ player = Player("Name", world.startingRoom)
 # traversalPath = ['n', 's']
 traversalPath = ['s', 's', 'n', 'n', 'w', 'w', 'e', 'e', 'e', 'e', 'w', 'w', 'n', 'n']
 
+# Create an empty list to hold rooms that have already been visited.
+# Loop through rooms until len(visited) == len(roomGraph)
+    # Add current room to list if not already there.
+    # do a dfs until I get to a room where I have explored all the exits.
+    # add all rooms to visited from dfs search and paths to transversalPath.
+    # do a bfs until I find a room with an unexplored path.  Add paths to transversalPath.
+    # loop until complete.
+
+
 
 # TRAVERSAL TEST
 visited_rooms = set()
@@ -44,10 +53,11 @@ else:
 #######
 # UNCOMMENT TO WALK AROUND
 #######
-# player.currentRoom.printRoomDescription(player)
-# while True:
-#     cmds = input("-> ").lower().split(" ")
-#     if cmds[0] in ["n", "s", "e", "w"]:
-#         player.travel(cmds[0], True)
-#     else:
-#         print("I did not understand that command.")
+player.currentRoom.printRoomDescription(player)
+while True:
+    cmds = input("-> ").lower().split(" ")
+    if cmds[0] in ["n", "s", "e", "w"]:
+        player.travel(cmds[0], True)
+    else:
+        print(player.currentRoom.getExits())
+        print("I did not understand that command.")
