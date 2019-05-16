@@ -236,6 +236,9 @@ world.printRooms()
 player = Player("Name", world.startingRoom)
 player.currentRoom = world.startingRoom
 
+# FILL THIS IN
+traversalPath = []
+room_order = []
 reverse_dirs = {'e': 'w', 'w': 'e', 'n': 's', 's': 'n'}
 
 
@@ -266,16 +269,7 @@ def bfs(graph, start_room):
                     dirs.append(reverse_dirs[k])
         return dirs
 
-
-# FILL THIS IN
-# traversalPath = ['n', 's']
-# traversalPath = ['s', 's', 'n', 'n', 'w', 'w', 'e', 'e', 'e', 'e', 'w', 'w', 'n', 'n']
-traversalPath = []
-room_order = []
-
-# Create an empty list to hold rooms that have already been visited.
 visited = {}
-# Loop through rooms until len(visited) == len(roomGraph)
 direction = None
 prev_room_id = None
 while len(visited) < len(roomGraph):
@@ -314,13 +308,18 @@ while len(visited) < len(roomGraph):
     traversalPath.append(direction)
     room_order.append(player.currentRoom.id)
 
-print(visited)
+# Open best route file and populate to check if best route was beat.
+best_length = 0
+with open('best_route.txt', 'r') as f:
+    best_length = int(f.readline())
+f.close()
 
-# Add current room to list if not already there.
-# do a dfs until I get to a room where I have explored all the exits.
-# add all rooms to visited from dfs search and paths to traversalPath.
-# do a bfs until I find a room with an unexplored path.  Only add the path from current room to that room to the traversalPath.
-# loop until complete.
+if len(traversalPath) < best_length:
+    with open('best_route.txt', '+w') as f:
+        f.write(f"{len(traversalPath)}")
+        f.write(f"\n{traversalPath}")
+    f.close()
+
 
 # TRAVERSAL TEST
 visited_rooms = set()
