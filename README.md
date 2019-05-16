@@ -81,4 +81,11 @@ If all paths have been explored, you're done!
 
 It is very difficult to calculate the shortest possible path that traverses the entire graph. Why?
 
+    There are so many possible paths.  I think it could be possible to store every route that was tried and keep the list sorted
+    so that if the path was the same as another path, it would turn off that path to an untried route as soon as possible.
+    It would be very memory intensive, though and would eventually cause the system to run out of memory if it wasn't managed somehow.
+    
 My best path is 957 moves. Can you find a shorter path?
+
+    The best I have been able to find is 957 moves as well.  See best_route.txt on the 2nd line for it.  It took 15 minutes and 172612
+    attempts to find that one.  I suspect it might be the best possible, but it would be hard to prove unless you somehow tested all possible routes.
